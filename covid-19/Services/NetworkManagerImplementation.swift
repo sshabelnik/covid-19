@@ -10,6 +10,7 @@ import Foundation
 import Alamofire
 
 class NetworkManagerImplementation: NetworkManager{
+    
     func getListOfCountries(completion: @escaping (Result<[CountryModelObject], Error>) -> Void) {
         
         AF.request(Endpoints.allCountriesURL()).responseDecodable(of: [CountryModel].self) { (response) in
@@ -22,12 +23,51 @@ class NetworkManagerImplementation: NetworkManager{
             }
             
             
-            guard let result = response.value else { return }
+            guard let value = response.value else { return }
             
-            let countrysArray = result.map({$0.createObject()})
-            print(countrysArray[0].name!)
+            let countrysArray = value.map({$0.createObject()})
             DispatchQueue.main.async {
                 completion(.success(countrysArray))
+            }
+        }
+    }
+    
+    func getDataCountry(country: String, completion: @escaping ((Result<CountryDataModelObject, Error>) -> Void)) {
+        
+        AF.request(Endpoints.countryDataURL(countryCode: country)).responseDecodable(of: [CountryDataModel].self){ (response) in
+            if let error = response.error{
+                print(error)
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+            }
+            
+            guard let value = response.value else {return}
+            
+            let countryData = value[0].createObject()
+            
+            DispatchQueue.main.async {
+                completion(.success(countryData))
+            }
+        }
+    }
+    
+    func getWorldData(completion: @escaping (Result<WorldDataModelObject, Error>) -> Void){
+        
+        AF.request(Endpoints.worldDataURL()).responseDecodable(of: [WorldDataModel].self) { (response) in
+            if let error = response.error{
+                print(error)
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+            }
+            
+            guard let value = response.value else {return}
+            
+            let worldData = value[0].createObject()
+            
+            DispatchQueue.main.async {
+                completion(.success(worldData))
             }
         }
     }
