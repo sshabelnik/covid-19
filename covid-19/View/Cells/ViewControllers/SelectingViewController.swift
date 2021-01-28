@@ -78,11 +78,16 @@ extension SelectingViewController: UITableViewDelegate, UITableViewDataSource{
                 print("DATACOUNTRY ERROR \(error)")
             case .success(let currentCountry):
                 DispatchQueue.main.async {
+                    LocalDataManagerImplementation.shared.createData(country: currentCountry)
                     self.tableVCdelegate.setSelectedCountry(country: currentCountry)
                 }
             }
+            
+            DispatchQueue.main.async {
+                self.navigationController?.popViewController(animated: true)
+            }
         }
-        dismiss(animated: true, completion: nil)
+        
     }
 }
 

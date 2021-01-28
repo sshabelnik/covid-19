@@ -13,12 +13,28 @@ class MainTableViewController: UIViewController {
     
     let networkManager = NetworkManagerImplementation()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.getData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         
         registerNibs()
+    }
+    
+    func getData() {
+        LocalDataManagerImplementation.shared.getData { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let data):
+                self.selectedCountry = data
+            }
+        }
     }
     
     func registerNibs(){

@@ -22,10 +22,10 @@ class WorldStatsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-//        self.mainView.layer.shadowColor = UIColor.black.cgColor
-//        self.mainView.layer.shadowOpacity = 0.5
-//        self.mainView.layer.shadowOffset = .zero
-//        self.mainView.layer.shadowRadius = 3.0
+        self.mainView.layer.shadowColor = UIColor.black.cgColor
+        self.mainView.layer.shadowOpacity = 0.5
+        self.mainView.layer.shadowOffset = .zero
+        self.mainView.layer.shadowRadius = 3.0
         
         self.mainView.layer.cornerRadius = 10.0
         

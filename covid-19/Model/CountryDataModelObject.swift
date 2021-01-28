@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CountryDataModelObject {
+struct CountryDataModelObject{
     
     let country: String
     let code: String
