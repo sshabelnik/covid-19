@@ -15,7 +15,6 @@ class LocalDataManagerImplementation: NSObject {
     public static let shared = LocalDataManagerImplementation()
 
     func createData(country: CountryDataModelObject) {
-        
         clearEntity()
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
@@ -51,20 +50,29 @@ class LocalDataManagerImplementation: NSObject {
         
         do {
             let result = try managedContext.fetch(fetchRequest)
-            let data = result.first as! NSManagedObject 
-            let country = data.value(forKey: "country") as! String
-            let code = data.value(forKey: "code") as! String
-            let confirmed = data.value(forKey: "confirmed") as! Int
-            let critical = data.value(forKey: "critical") as! Int
-            let deaths = data.value(forKey: "deaths") as! Int
-            let recovered = data.value(forKey: "recovered") as! Int
-            let currentCountry = CountryDataModelObject(country: country, code: code, confirmed: confirmed, recovered: recovered, critical: critical, deaths: deaths)
-            completionHandler(.success(currentCountry))
+            if result.first == nil {
+                completionHandler(.success(CountryDataModelObject(country: "Kazakhstan", code: "KZ", confirmed: 182530, recovered: 164319, critical: 15735, deaths: 2476)))
+            }
+            else {
+                let data = result.first as! NSManagedObject
+                let country = data.value(forKey: "country") as! String
+                let code = data.value(forKey: "code") as! String
+                let confirmed = data.value(forKey: "confirmed") as! Int
+                let critical = data.value(forKey: "critical") as! Int
+                let deaths = data.value(forKey: "deaths") as! Int
+                let recovered = data.value(forKey: "recovered") as! Int
+                let currentCountry = CountryDataModelObject(country: country, code: code, confirmed: confirmed, recovered: recovered, critical: critical, deaths: deaths)
+                completionHandler(.success(currentCountry))
+            }
             
         } catch let error {
             print("Failed")
             completionHandler(.failure(error))
         }
+    }
+    
+    func setDefaultsValue() {
+        
     }
     
     func clearEntity() {
