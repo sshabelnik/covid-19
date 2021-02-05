@@ -22,7 +22,6 @@ class NetworkManagerImplementation: NetworkManager{
                 return
             }
             
-            
             guard let value = response.value else { return }
             
             let countrysArray = value.map({$0.createObject()})
@@ -33,8 +32,7 @@ class NetworkManagerImplementation: NetworkManager{
     }
     
     func getDataCountry(country: String, completion: @escaping ((Result<CountryDataModelObject, Error>) -> Void)) {
-        
-        AF.request(Endpoints.countryDataURL(countryCode: country)).responseDecodable(of: [CountryDataModel].self){ (response) in
+        AF.request(Endpoints.countryDataURL(countryCode: country)).responseDecodable(of: CountryDataStats.self){ (response) in
             if let error = response.error{
                 print(error)
                 DispatchQueue.main.async {
@@ -44,7 +42,7 @@ class NetworkManagerImplementation: NetworkManager{
             
             guard let value = response.value else {return}
             
-            let countryData = value[0].createObject()
+            let countryData = value.createObject()
             
             DispatchQueue.main.async {
                 completion(.success(countryData))
@@ -54,7 +52,7 @@ class NetworkManagerImplementation: NetworkManager{
     
     func getWorldData(completion: @escaping (Result<WorldDataModelObject, Error>) -> Void){
         
-        AF.request(Endpoints.worldDataURL()).responseDecodable(of: [WorldDataModel].self) { (response) in
+        AF.request(Endpoints.worldDataURL()).responseDecodable(of: WorldDataStats.self) { (response) in
             if let error = response.error{
                 print(error)
                 DispatchQueue.main.async {
@@ -64,7 +62,7 @@ class NetworkManagerImplementation: NetworkManager{
             
             guard let value = response.value else {return}
             
-            let worldData = value[0].createObject()
+            let worldData = value.stats.createObject()
             
             DispatchQueue.main.async {
                 completion(.success(worldData))

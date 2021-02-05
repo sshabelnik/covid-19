@@ -15,7 +15,7 @@ class MainTableViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.getData()
+//        self.getData()
     }
     
     override func viewDidLoad() {
@@ -26,16 +26,16 @@ class MainTableViewController: UIViewController {
         registerNibs()
     }
     
-    func getData() {
-        LocalDataManagerImplementation.shared.getData { (result) in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let data):
-                self.selectedCountry = data
-            }
-        }
-    }
+//    func getData() {
+//        LocalDataManagerImplementation.shared.getCountryData { (result) in
+//            switch result {
+//            case .failure(let error):
+//                print(error)
+//            case .success(let data):
+//                self.selectedCountry?.stats = data
+//            }
+//        }
+//    }
     
     func registerNibs(){
         let countryNib = UINib(nibName: "CountryTableViewCell", bundle: nil)
@@ -69,7 +69,12 @@ extension MainTableViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 10
+        switch section {
+        case 0:
+            return 0
+        default:
+            return 10
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

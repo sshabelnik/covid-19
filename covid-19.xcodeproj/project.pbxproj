@@ -123,10 +123,10 @@
 			isa = PBXGroup;
 			children = (
 				A9AA2AE1250A5C2D00B2B102 /* ViewControllers */,
-				A97698ED24C7038E00C96FD2 /* CountryTableViewCell.swift */,
-				A97698EE24C7038E00C96FD2 /* CountryTableViewCell.xib */,
 				A95AEF69250B695600112E03 /* CurrentCountryTableViewCell.swift */,
 				A95AEF6A250B695600112E03 /* CurrentCountryTableViewCell.xib */,
+				A97698ED24C7038E00C96FD2 /* CountryTableViewCell.swift */,
+				A97698EE24C7038E00C96FD2 /* CountryTableViewCell.xib */,
 				A95AEF6D250B705B00112E03 /* WorldStatsTableViewCell.swift */,
 				A95AEF6E250B705B00112E03 /* WorldStatsTableViewCell.xib */,
 			);

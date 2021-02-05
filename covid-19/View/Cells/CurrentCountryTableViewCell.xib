@@ -22,11 +22,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="293" height="44"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="879-3P-a8d">
-                                <rect key="frame" x="36" y="12" width="250" height="20"/>
+                                <rect key="frame" x="36" y="12" width="250" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="B7X-nB-R0L"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -36,7 +36,7 @@
                                     <constraint firstAttribute="width" constant="25" id="5Y0-ap-P99"/>
                                     <constraint firstAttribute="height" constant="25" id="8nY-8Z-lNN"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>

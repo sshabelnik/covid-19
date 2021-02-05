@@ -22,27 +22,27 @@ class WorldStatsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.mainView.layer.shadowColor = UIColor.black.cgColor
-        self.mainView.layer.shadowOpacity = 0.5
-        self.mainView.layer.shadowOffset = .zero
-        self.mainView.layer.shadowRadius = 3.0
-        
-        self.mainView.layer.cornerRadius = 10.0
+//        self.mainView.layer.shadowColor = UIColor.black.cgColor
+//        self.mainView.layer.shadowOpacity = 0.5
+//        self.mainView.layer.shadowOffset = .zero
+//        self.mainView.layer.shadowRadius = 3.0
+//        
+//        self.mainView.layer.cornerRadius = 10.0
         
     }
     
     func setupCell(world: WorldDataModelObject){
-        self.confirmedCovidLabel.text = String(world.confirmed.formattedWithSeparator)
-        self.sickCovidLabel.text = String((world.critical * 230).formattedWithSeparator)
-        self.recoveredCovidLabel.text = String(world.recovered.formattedWithSeparator)
-        self.deathsCovidLabel.text = String(world.deaths.formattedWithSeparator)
+        self.confirmedCovidLabel.text = String(world.totalConfirmedCases.formattedWithSeparator)
+        self.sickCovidLabel.text = String((world.totalSickCases).formattedWithSeparator)
+        self.recoveredCovidLabel.text = String(world.totalRecoveredCases.formattedWithSeparator)
+        self.deathsCovidLabel.text = String(world.totalDeaths.formattedWithSeparator)
         setupPieChartView(world: world)
     }
     
     func setupPieChartView(world: WorldDataModelObject){
-        sickDataEntry.value = Double(world.critical)*230
-        recoveredDataEntry.value = Double(world.recovered)
-        deathsDataEntry.value = Double(world.deaths)
+        sickDataEntry.value = Double(world.totalSickCases)
+        recoveredDataEntry.value = Double(world.totalRecoveredCases)
+        deathsDataEntry.value = Double(world.totalDeaths)
         
         numberOfDownloadsDataEntries = [sickDataEntry, recoveredDataEntry, deathsDataEntry]
         pieChartView.legend.enabled = false

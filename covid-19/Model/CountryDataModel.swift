@@ -8,16 +8,30 @@
 
 import Foundation
 
+struct CountryDataName: Codable {
+    let countryOrRegion: String
+    let isoCode: String
+}
+
 struct CountryDataModel: Codable{
     
-    let country: String
-    let code: String
-    let confirmed: Int
-    let recovered: Int
-    let critical: Int
-    let deaths: Int
+    let totalConfirmedCases: Int
+    let newlyConfirmedCases: Int
+    let totalDeaths: Int
+    let newDeaths: Int
+    let totalRecoveredCases: Int
+    let newlyRecoveredCases: Int
+}
+
+struct CountryDataStats: Codable {
+    let location: CountryDataName
+    let updatedDateTime: String
+    let stats: CountryDataModel
     
     func createObject() -> CountryDataModelObject{
-        return CountryDataModelObject(country: country, code: code, confirmed: confirmed, recovered: recovered, critical: critical, deaths: deaths)
+        
+        return CountryDataModelObject(country: location.countryOrRegion, code: location.isoCode, totalConfirmedCases: stats.totalConfirmedCases, newlyConfirmedCases: stats.newlyConfirmedCases, totalDeaths: stats.totalDeaths, newDeaths: stats.newDeaths, totalRecoveredCases: stats.totalRecoveredCases, newlyRecoveredCases: stats.newlyRecoveredCases, totalSickCases: stats.totalConfirmedCases - stats.totalDeaths - stats.totalRecoveredCases)
     }
 }
+
+

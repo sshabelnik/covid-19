@@ -8,14 +8,21 @@
 
 import Foundation
 
+struct WorldDataStats: Codable {
+    let updatedDateTime: String
+    let stats: WorldDataModel
+}
+
 struct WorldDataModel: Codable{
     
-    let confirmed: Int
-    let recovered: Int
-    let critical: Int
-    let deaths: Int
+    let totalConfirmedCases: Int
+    let newlyConfirmedCases: Int
+    let totalDeaths: Int
+    let newDeaths: Int
+    let totalRecoveredCases: Int
+    let newlyRecoveredCases: Int
     
     func createObject() -> WorldDataModelObject{
-        return WorldDataModelObject(confirmed: confirmed, recovered: recovered, critical: critical, deaths: deaths)
+        return WorldDataModelObject(totalConfirmedCases: totalConfirmedCases, newlyConfirmedCases: newlyConfirmedCases, totalDeaths: totalDeaths, newDeaths: newDeaths, totalRecoveredCases: totalRecoveredCases, newlyRecoveredCases: newlyRecoveredCases, totalSickCases: totalConfirmedCases - totalDeaths - totalRecoveredCases)
     }
 }

@@ -29,11 +29,11 @@ class Endpoints{
     static func countryDataURL(countryCode: String) -> URLRequest{
         
         let headers = [
-            "x-rapidapi-host": "covid-19-data.p.rapidapi.com",
-            "x-rapidapi-key": "84d4f068eamshae63f22a1e6b83ap1c09a2jsn11cffe38c5ef"
+            "x-rapidapi-key": "84d4f068eamshae63f22a1e6b83ap1c09a2jsn11cffe38c5ef",
+            "x-rapidapi-host": "coronavirus-smartable.p.rapidapi.com"
         ]
         
-        let url = URL(string: "https://covid-19-data.p.rapidapi.com/country/code?format=json&code=\(countryCode)")
+        let url = URL(string: "https://coronavirus-smartable.p.rapidapi.com/stats/v1/\(countryCode)/")
         
         var request = URLRequest(url: url!)
         request.httpMethod = "GET"
@@ -44,12 +44,12 @@ class Endpoints{
     
     static func worldDataURL() -> URLRequest{
            
-           let headers = [
-               "x-rapidapi-host": "covid-19-data.p.rapidapi.com",
-               "x-rapidapi-key": "84d4f068eamshae63f22a1e6b83ap1c09a2jsn11cffe38c5ef"
-           ]
+        let headers = [
+            "x-rapidapi-key": "84d4f068eamshae63f22a1e6b83ap1c09a2jsn11cffe38c5ef",
+            "x-rapidapi-host": "coronavirus-smartable.p.rapidapi.com"
+        ]
            
-           let url = URL(string: "https://covid-19-data.p.rapidapi.com/totals?format=json")
+           let url = URL(string: "https://coronavirus-smartable.p.rapidapi.com/stats/v1/global/")
            
            var request = URLRequest(url: url!)
            request.httpMethod = "GET"

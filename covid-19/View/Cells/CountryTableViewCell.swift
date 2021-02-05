@@ -10,10 +10,12 @@ import UIKit
 
 class CountryTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var todayCovidLabel: UILabel!
-    @IBOutlet weak var todayCountLabel: UILabel!
-    @IBOutlet weak var allCovidLabel: UILabel!
-    @IBOutlet weak var allTimeCountLabel: UILabel!
+    
+    @IBOutlet weak var confirmedCountLabel: UILabel!
+    @IBOutlet weak var recoveredCountLabel: UILabel!
+    @IBOutlet weak var criticalCountLabel: UILabel!
+    @IBOutlet weak var deathsCountLabel: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,8 +35,7 @@ class CountryTableViewCell: UITableViewCell {
     }
     
     func setupCell(for country: CountryDataModelObject){
-        todayCountLabel.text = String(country.confirmed)
-        allTimeCountLabel.text = String(country.recovered)
+        
     }
     
 }

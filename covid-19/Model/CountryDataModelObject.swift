@@ -12,8 +12,11 @@ struct CountryDataModelObject{
     
     let country: String
     let code: String
-    let confirmed: Int
-    let recovered: Int
-    let critical: Int
-    let deaths: Int
+    let totalConfirmedCases: Int
+    let newlyConfirmedCases: Int
+    let totalDeaths: Int
+    let newDeaths: Int
+    let totalRecoveredCases: Int
+    let newlyRecoveredCases: Int
+    let totalSickCases: Int
 }
