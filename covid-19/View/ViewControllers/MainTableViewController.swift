@@ -9,13 +9,15 @@ class MainTableViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    var worldData: WorldDataModelObject?
+    
     var selectedCountry: CountryDataModelObject?
     
     let networkManager = NetworkManagerImplementation()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        self.getData()
+        self.getData()
     }
     
     override func viewDidLoad() {
@@ -26,16 +28,35 @@ class MainTableViewController: UIViewController {
         registerNibs()
     }
     
-//    func getData() {
-//        LocalDataManagerImplementation.shared.getCountryData { (result) in
+    func getData() {
+        LocalDataManagerImplementation.shared.getCountryData { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let data):
+                self.selectedCountry = data
+            }
+        }
+//        
+//        LocalDataManagerImplementation.shared.getWorldData { (result) in
 //            switch result {
-//            case .failure(let error):
+//            case.failure(let error):
 //                print(error)
+//                self.networkManager.getWorldData { (result) in
+//                    switch result{
+//                    case.failure(let error):
+//                        print("Getting WorldData error: \(error)")
+//                    case.success(let data):
+//                        self.worldData = data
+//                        LocalDataManagerImplementation.shared.saveWorldData(data: data)
+//                    }
+//                }
 //            case .success(let data):
-//                self.selectedCountry?.stats = data
+//                self.worldData = data
 //            }
 //        }
-//    }
+        self.tableView.reloadData()
+    }
     
     func registerNibs(){
         let countryNib = UINib(nibName: "CountryTableViewCell", bundle: nil)
@@ -96,7 +117,7 @@ extension MainTableViewController: UITableViewDelegate, UITableViewDataSource{
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "WorldStatsTableViewCell") as! WorldStatsTableViewCell
-            networkManager.getWorldData { (result) in
+            self.networkManager.getWorldData { (result) in
                 switch result{
                 case.failure(let error):
                     print("Getting WorldData error: \(error)")
@@ -104,6 +125,7 @@ extension MainTableViewController: UITableViewDelegate, UITableViewDataSource{
                     DispatchQueue.main.async {
                         cell.setupCell(world: data)
                     }
+                    LocalDataManagerImplementation.shared.saveWorldData(data: data)
                 }
             }
             cell.selectionStyle = .none

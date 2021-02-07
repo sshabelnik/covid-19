@@ -69,4 +69,21 @@ class NetworkManagerImplementation: NetworkManager{
             }
         }
     }
+    
+    func getNews(completion: @escaping (Result<NewsModel, Error>) -> Void) {
+        
+        AF.request(Endpoints.newsURL()).responseDecodable(of: NewsModel.self) { (response) in
+            if let error = response.error{
+                print(error)
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+            }
+            
+            guard let value = response.value else {return}
+            DispatchQueue.main.async {
+                completion(.success(value))
+            }
+        }
+    }
 }

@@ -78,7 +78,7 @@ extension SelectingViewController: UITableViewDelegate, UITableViewDataSource{
                 print("DATACOUNTRY ERROR \(error)")
             case .success(let currentCountry):
                 DispatchQueue.main.async {
-//                    LocalDataManagerImplementation.shared.saveCountryData(country: currentCountry)
+                    LocalDataManagerImplementation.shared.saveCountryData(country: currentCountry)
                     self.tableVCdelegate.setSelectedCountry(country: currentCountry)
                 }
             }

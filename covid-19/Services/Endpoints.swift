@@ -57,4 +57,19 @@ class Endpoints{
            
            return request
        }
+    
+    static func newsURL() -> URLRequest{
+        let headers = [
+            "x-rapidapi-key": "84d4f068eamshae63f22a1e6b83ap1c09a2jsn11cffe38c5ef",
+            "x-rapidapi-host": "coronavirus-smartable.p.rapidapi.com"
+        ]
+        
+        let url = URL(string: "https://coronavirus-smartable.p.rapidapi.com/news/v1/RU/")
+        
+        var request = URLRequest(url: url!)
+        request.httpMethod = "GET"
+        request.allHTTPHeaderFields = headers
+        
+        return request
+    }
 }
