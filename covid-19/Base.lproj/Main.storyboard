@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar View Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="GNR-ly-uB9">
             <objects>
-                <tabBarController id="Dv3-fS-8Ke" customClass="TabBarViewController" customModule="covid_19" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="Dv3-fS-8Ke" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="2ZV-g0-hlb"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Va0-JF-gpc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -20,6 +20,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
+                        <outlet property="tabBar" destination="Va0-JF-gpc" id="ci8-j1-adF"/>
                         <segue destination="U4a-JI-Bir" kind="relationship" relationship="viewControllers" id="IG2-2W-YwN"/>
                         <segue destination="Fxv-cf-doE" kind="relationship" relationship="viewControllers" id="eAa-33-V15"/>
                     </connections>
@@ -128,11 +129,11 @@
             </objects>
             <point key="canvasLocation" x="3021.739130434783" y="-170.08928571428569"/>
         </scene>
-        <!--Item-->
+        <!--Статистика-->
         <scene sceneID="Pei-Bg-jgt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="U4a-JI-Bir" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Frp-he-DLi"/>
+                    <tabBarItem key="tabBarItem" title="Статистика" id="Frp-he-DLi"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="k04-4H-dNy">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -147,11 +148,11 @@
             </objects>
             <point key="canvasLocation" x="1066.6666666666667" y="-170.08928571428569"/>
         </scene>
-        <!--Item-->
+        <!--Новости-->
         <scene sceneID="aMa-vd-3mk">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Fxv-cf-doE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="aXK-ej-atv"/>
+                    <tabBarItem key="tabBarItem" title="Новости" id="aXK-ej-atv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="sfz-0s-WnG">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>

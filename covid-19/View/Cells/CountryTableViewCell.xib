@@ -71,6 +71,7 @@
             <connections>
                 <outlet property="confirmedCovidLabel" destination="KbG-j4-e1Y" id="8Ry-hB-jqc"/>
                 <outlet property="deathsCovidLabel" destination="awf-Qr-2ym" id="rO8-m9-XGb"/>
+                <outlet property="mainView" destination="tSt-xw-B35" id="bfn-AX-Hgg"/>
                 <outlet property="newConfirmedCovidLabel" destination="eBJ-eG-CgD" id="cuy-9D-1Pg"/>
                 <outlet property="recoveredCovidLabel" destination="dEv-wf-ck0" id="2Gd-9m-Xhl"/>
                 <outlet property="sickCovidLabel" destination="lbH-GK-T96" id="8IT-Eu-OUq"/>

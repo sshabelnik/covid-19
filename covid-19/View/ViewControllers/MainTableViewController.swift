@@ -91,10 +91,10 @@ extension MainTableViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         switch section {
-        case 0:
-            return 0
-        default:
+        case 1:
             return 10
+        default:
+            return 0
         }
     }
     
@@ -142,7 +142,7 @@ extension MainTableViewController: UITableViewDelegate, UITableViewDataSource{
         case 0:
             return 50
         case 1:
-            return 180
+            return 250
         case 2:
             return 350
         default:

@@ -24,6 +24,7 @@
 		A95AEF74250B799800112E03 /* WorldDataModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95AEF73250B799800112E03 /* WorldDataModelObject.swift */; };
 		A960EFAE25B9B60300C7E1B0 /* FormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A960EFAD25B9B60300C7E1B0 /* FormatterExtension.swift */; };
 		A960EFB125B9B61F00C7E1B0 /* NumericExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A960EFB025B9B61F00C7E1B0 /* NumericExtension.swift */; };
+		A961EBC325D0183A00DD1E3C /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961EBC225D0183A00DD1E3C /* LineView.swift */; };
 		A97698EB24C7021800C96FD2 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97698EA24C7021800C96FD2 /* MainTableViewController.swift */; };
 		A97698EF24C7038E00C96FD2 /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97698ED24C7038E00C96FD2 /* CountryTableViewCell.swift */; };
 		A97698F024C7038E00C96FD2 /* CountryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A97698EE24C7038E00C96FD2 /* CountryTableViewCell.xib */; };
@@ -35,7 +36,6 @@
 		A9AA2ADE250A547900B2B102 /* CountryModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA2ADD250A547900B2B102 /* CountryModelObject.swift */; };
 		A9AA2AE0250A5C2000B2B102 /* SelectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA2ADF250A5C2000B2B102 /* SelectingViewController.swift */; };
 		A9BE147125C2DC360073AF7E /* LocalDataManagerImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BE147025C2DC360073AF7E /* LocalDataManagerImplementation.swift */; };
-		A9DD1B7525CFFF7500DADAD8 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DD1B7425CFFF7500DADAD8 /* TabBarViewController.swift */; };
 		A9DD1B7825D0056600DADAD8 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DD1B7725D0056600DADAD8 /* NewsModel.swift */; };
 		A9DD1B8325D008EB00DADAD8 /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DD1B8225D008EB00DADAD8 /* NewsTableViewController.swift */; };
 		A9DD1B8C25D009C600DADAD8 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DD1B8A25D009C600DADAD8 /* NewsTableViewCell.swift */; };
@@ -64,6 +64,7 @@
 		A95AEF73250B799800112E03 /* WorldDataModelObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldDataModelObject.swift; sourceTree = "<group>"; };
 		A960EFAD25B9B60300C7E1B0 /* FormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterExtension.swift; sourceTree = "<group>"; };
 		A960EFB025B9B61F00C7E1B0 /* NumericExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericExtension.swift; sourceTree = "<group>"; };
+		A961EBC225D0183A00DD1E3C /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		A97698EA24C7021800C96FD2 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		A97698ED24C7038E00C96FD2 /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
 		A97698EE24C7038E00C96FD2 /* CountryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryTableViewCell.xib; sourceTree = "<group>"; };
@@ -75,7 +76,6 @@
 		A9AA2ADD250A547900B2B102 /* CountryModelObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModelObject.swift; sourceTree = "<group>"; };
 		A9AA2ADF250A5C2000B2B102 /* SelectingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectingViewController.swift; sourceTree = "<group>"; };
 		A9BE147025C2DC360073AF7E /* LocalDataManagerImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataManagerImplementation.swift; sourceTree = "<group>"; };
-		A9DD1B7425CFFF7500DADAD8 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		A9DD1B7725D0056600DADAD8 /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		A9DD1B8225D008EB00DADAD8 /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		A9DD1B8A25D009C600DADAD8 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
@@ -185,7 +185,6 @@
 			children = (
 				A9AA2ADF250A5C2000B2B102 /* SelectingViewController.swift */,
 				A97698EA24C7021800C96FD2 /* MainTableViewController.swift */,
-				A9DD1B7425CFFF7500DADAD8 /* TabBarViewController.swift */,
 				A9DD1B8225D008EB00DADAD8 /* NewsTableViewController.swift */,
 			);
 			path = ViewControllers;
@@ -196,6 +195,7 @@
 			children = (
 				A960EFAD25B9B60300C7E1B0 /* FormatterExtension.swift */,
 				A960EFB025B9B61F00C7E1B0 /* NumericExtension.swift */,
+				A961EBC225D0183A00DD1E3C /* LineView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -339,7 +339,6 @@
 				A95AEF66250AAF4D00112E03 /* CountryDataModel.swift in Sources */,
 				A9DD1B7825D0056600DADAD8 /* NewsModel.swift in Sources */,
 				A9AA2AD0250A0E4B00B2B102 /* NetworkManager.swift in Sources */,
-				A9DD1B7525CFFF7500DADAD8 /* TabBarViewController.swift in Sources */,
 				A95AEF6F250B705B00112E03 /* WorldStatsTableViewCell.swift in Sources */,
 				A9AA2AE0250A5C2000B2B102 /* SelectingViewController.swift in Sources */,
 				A97698EB24C7021800C96FD2 /* MainTableViewController.swift in Sources */,
@@ -350,6 +349,7 @@
 				A936F5CC24C6FC7700C4F810 /* SceneDelegate.swift in Sources */,
 				A9AA2AD9250A0F8900B2B102 /* CountryModel.swift in Sources */,
 				A9AA2AD2250A0E6800B2B102 /* NetworkManagerImplementation.swift in Sources */,
+				A961EBC325D0183A00DD1E3C /* LineView.swift in Sources */,
 				A97698EF24C7038E00C96FD2 /* CountryTableViewCell.swift in Sources */,
 				A9AA2AD7250A0ED500B2B102 /* Endpoints.swift in Sources */,
 				A95AEF72250B798C00112E03 /* WorldDataModel.swift in Sources */,

@@ -11,6 +11,7 @@ import UIKit
 class CountryTableViewCell: UITableViewCell {
 
     
+    @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var newConfirmedCovidLabel: UILabel!
     @IBOutlet weak var confirmedCovidLabel: UILabel!
     @IBOutlet weak var recoveredCovidLabel: UILabel!
@@ -41,6 +42,23 @@ class CountryTableViewCell: UITableViewCell {
         self.recoveredCovidLabel.text = String(country.totalRecoveredCases.formattedWithSeparator)
         self.sickCovidLabel.text = String(country.totalSickCases.formattedWithSeparator)
         self.deathsCovidLabel.text = String(country.totalDeaths.formattedWithSeparator)
+        drawLine(for: country)
+    }
+    
+    func drawLine(for country: CountryDataModelObject){
+        let lineView = LineView(frame: CGRect(x: 10, y: 200, width: mainView.bounds.size.width - 20, height: 20))
+
+        lineView.colors = [
+            UIColor(red: 1.0, green: 31.0/255.0, blue: 73.0/255.0, alpha: 1.0), // red
+            UIColor(red:1.0, green: 138.0/255.0, blue: 0.0, alpha:1.0), // orange
+            UIColor(red: 100.0/255.0, green: 241.0/255.0, blue: 183.0/255.0, alpha: 1.0), // green
+        ]
+        let deathsPercent = CGFloat(Double(country.totalDeaths) / Double(country.totalConfirmedCases))
+        let sickPercent = CGFloat(Double(country.totalSickCases) / Double(country.totalConfirmedCases))
+        let recoveredPercent = CGFloat(Double(country.totalRecoveredCases) / Double(country.totalConfirmedCases))
+        lineView.values = [deathsPercent, sickPercent, recoveredPercent]
+
+        mainView.addSubview(lineView);
     }
     
 }
