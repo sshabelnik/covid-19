@@ -10,13 +10,13 @@ import UIKit
 
 class SelectingViewController: UIViewController{
     
-    var countrys: [CountryModelObject]! = []
-    var filteredCountrys: [CountryModelObject]! = []
+    var countries: [CountryModelObject]?
+    var filteredCountrys: [CountryModelObject]?
+    
+    var presenter: SelectingViewOutput!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
-    var networkManager: NetworkManager!
     
     var tableVCdelegate: MainTableViewControllerDelegate!
     
@@ -28,66 +28,32 @@ class SelectingViewController: UIViewController{
         tableView.delegate = self
         tableView.dataSource = self
         
-        networkManager = NetworkManagerImplementation()
-        DispatchQueue.main.async {
-            self.getCountrys()
-        }
-        
         self.tableView.tableHeaderView = searchBar
-    }
-    
-    func getCountrys(){
-        networkManager.getListOfCountries { (result) in
-            switch result{
-            case .failure(let error):
-                print("ALLCOUNTRIES ERROR: \(error)")
-            case .success(let array):
-                self.countrys = array
-                self.filteredCountrys = array
-                self.tableView.reloadData()    
-            }
+        
+        DispatchQueue.main.async {
+            self.presenter.getCountrys()
         }
     }
-    
-    func flag(country:String) -> String {
-        let base : UInt32 = 127397
-        var s = ""
-        for v in country.unicodeScalars {
-            s.unicodeScalars.append(UnicodeScalar(base + v.value)!)
-        }
-        return String(s)
-    }
-    
 }
 
 extension SelectingViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredCountrys.count
+        guard let countries = filteredCountrys else { return 0}
+        return countries.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = flag(country: filteredCountrys[indexPath.row].alpha2code ?? "kz") + " " + filteredCountrys[indexPath.row].name
+        guard let country = filteredCountrys?[indexPath.row] else { return UITableViewCell() }
+        cell.textLabel?.text = presenter.flag(country: country.alpha2code ?? "kz") + " " + country.name
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        networkManager.getDataCountry(country: filteredCountrys[indexPath.row].alpha2code!) { (response) in
-            switch response{
-            case .failure(let error):
-                print("DATACOUNTRY ERROR \(error)")
-            case .success(let currentCountry):
-                DispatchQueue.main.async {
-                    LocalDataManagerImplementation.shared.saveCountryData(country: currentCountry)
-                    self.tableVCdelegate.setSelectedCountry(country: currentCountry)
-                }
-            }
-            
-            DispatchQueue.main.async {
-                self.navigationController?.popViewController(animated: true)
-            }
+        DispatchQueue.main.async {
+            self.presenter.rowSelected(country: (self.filteredCountrys?[indexPath.row])!)
+            self.navigationController?.popViewController(animated: true)
         }
-        
     }
 }
 
@@ -97,15 +63,28 @@ extension SelectingViewController: UISearchBarDelegate {
         filteredCountrys = []
         
         if searchText == "" {
-            filteredCountrys = countrys
+            filteredCountrys = countries
         }
         else {
-            for country in countrys {
+            guard let countries = self.countries else { return }
+            for country in countries {
                 if country.name.lowercased().contains(searchText.lowercased()) {
-                    filteredCountrys.append(country)
+                    self.filteredCountrys?.append(country)
                 }
             }
         }
         self.tableView.reloadData()
+    }
+}
+
+extension SelectingViewController: SelectingViewInput {
+    func setAllCountries(countries: [CountryModelObject]) {
+        self.countries = countries
+        self.filteredCountrys = countries
+        self.tableView.reloadData()
+    }
+    
+    func setCurrentCountry(country: CountryDataModelObject) {
+        self.tableVCdelegate.setSelectedCountry(country: country)
     }
 }

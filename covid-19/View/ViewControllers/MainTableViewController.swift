@@ -6,18 +6,18 @@ protocol MainTableViewControllerDelegate: AnyObject{
 }
 
 class MainTableViewController: UIViewController {
+    
+    var presenter: MainViewOutput!
+    
+    var worldData: WorldDataModelObject?
+    var selectedCountry: CountryDataModelObject?
 
     @IBOutlet weak var tableView: UITableView!
     
-    var worldData: WorldDataModelObject?
-    
-    var selectedCountry: CountryDataModelObject?
-    
-    let networkManager = NetworkManagerImplementation()
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.getData()
+        presenter.getData()
+        presenter.getAndSaveWorldData()
     }
     
     override func viewDidLoad() {
@@ -26,36 +26,6 @@ class MainTableViewController: UIViewController {
         tableView.dataSource = self
         
         registerNibs()
-    }
-    
-    func getData() {
-        LocalDataManagerImplementation.shared.getCountryData { (result) in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let data):
-                self.selectedCountry = data
-            }
-        }
-//        
-//        LocalDataManagerImplementation.shared.getWorldData { (result) in
-//            switch result {
-//            case.failure(let error):
-//                print(error)
-//                self.networkManager.getWorldData { (result) in
-//                    switch result{
-//                    case.failure(let error):
-//                        print("Getting WorldData error: \(error)")
-//                    case.success(let data):
-//                        self.worldData = data
-//                        LocalDataManagerImplementation.shared.saveWorldData(data: data)
-//                    }
-//                }
-//            case .success(let data):
-//                self.worldData = data
-//            }
-//        }
-        self.tableView.reloadData()
     }
     
     func registerNibs(){
@@ -72,10 +42,8 @@ class MainTableViewController: UIViewController {
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! SelectingViewController
-        destinationVC.tableVCdelegate = self
+        presenter.prepareSegue(for: segue)
     }
 }
 
@@ -102,14 +70,14 @@ extension MainTableViewController: UITableViewDelegate, UITableViewDataSource{
         
         switch indexPath.section{
         case 0:
-            guard let country = selectedCountry else {return UITableViewCell()}
             let cell = tableView.dequeueReusableCell(withIdentifier: "CurrentCountryTableViewCell") as! CurrentCountryTableViewCell
+            guard let country = selectedCountry else { return UITableViewCell()}
             cell.setCurrentCountry(country: country)
             cell.selectionStyle = .none
             return cell
         case 1:
-            guard let country = selectedCountry else {return UITableViewCell()}
             let cell = tableView.dequeueReusableCell(withIdentifier: "CountryTableViewCell") as! CountryTableViewCell
+            guard let country = selectedCountry else { return UITableViewCell()}
             DispatchQueue.main.async {
                 cell.setupCell(for: country)
             }
@@ -117,17 +85,8 @@ extension MainTableViewController: UITableViewDelegate, UITableViewDataSource{
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "WorldStatsTableViewCell") as! WorldStatsTableViewCell
-            self.networkManager.getWorldData { (result) in
-                switch result{
-                case.failure(let error):
-                    print("Getting WorldData error: \(error)")
-                case.success(let data):
-                    DispatchQueue.main.async {
-                        cell.setupCell(world: data)
-                    }
-                    LocalDataManagerImplementation.shared.saveWorldData(data: data)
-                }
-            }
+            guard let worldData = worldData else { return UITableViewCell() }
+            cell.setupCell(world: worldData)
             cell.selectionStyle = .none
             return cell
         default:
@@ -151,21 +110,22 @@ extension MainTableViewController: UITableViewDelegate, UITableViewDataSource{
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.section{
-        case 0:
+        if indexPath.section == 0 {
             performSegue(withIdentifier: "selectingSegue", sender: nil)
-        default:
-            print()
-        }
-
-    }
-}
-
-extension MainTableViewController: MainTableViewControllerDelegate{
-    func setSelectedCountry(country: CountryDataModelObject) {
-        DispatchQueue.main.async {
-            self.selectedCountry = country
-            self.tableView.reloadData()
         }
     }
 }
+
+extension MainTableViewController: MainViewInput {
+    func setCurrentCountry(country: CountryDataModelObject) {
+        self.selectedCountry = country
+        self.tableView.reloadData()
+    }
+    
+    func setWorldData(data: WorldDataModelObject) {
+        self.worldData = data
+        self.tableView.reloadData()
+    }
+}
+
+

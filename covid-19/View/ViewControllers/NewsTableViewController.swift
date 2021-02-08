@@ -10,50 +10,27 @@ import UIKit
 
 class NewsTableViewController: UIViewController {
     
-    var news: [News]! = []
-
+    // MARK: -
+    
+    var presenter: NewsViewOutput!
+    var news: [News]?
+    
+    // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
-    let networkManager = NetworkManagerImplementation()
-        
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tableView.delegate = self
         tableView.dataSource = self
         
-        fetchNews()
+        presenter.fetchNews()
     }
-    
-    func fetchNews() {
-        networkManager.getNews { (result) in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case.success(let data):
-                DispatchQueue.main.async {
-                    self.news = data.news
-                    self.tableView.reloadData()
-                }
-            }
-        }
-
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
+// MARK: - TableView DataSource
 extension NewsTableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let news = news else { return 0 }
         return news.count
     }
     
@@ -62,6 +39,7 @@ extension NewsTableViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.register(countryNib, forCellReuseIdentifier: "NewsTableViewCell")
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell") as! NewsTableViewCell
+        guard let news = news else { return UITableViewCell() }
         cell.setup(for: news[indexPath.row])
         return cell
     }
@@ -69,6 +47,12 @@ extension NewsTableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
-    
+}
+
+// MARK: - ViewInput
+extension NewsTableViewController: NewsViewInput {
+    func importNews(news: [News]) {
+        self.news = news
+        self.tableView.reloadData()
+    }
 }

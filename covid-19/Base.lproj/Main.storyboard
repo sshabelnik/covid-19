@@ -29,7 +29,7 @@
             </objects>
             <point key="canvasLocation" x="43" y="133"/>
         </scene>
-        <!--Новости-->
+        <!--News-->
         <scene sceneID="MG6-qV-T6r">
             <objects>
                 <viewController id="SZF-4g-Vqh" customClass="NewsTableViewController" customModule="covid_19" customModuleProvider="target" sceneMemberID="viewController">
@@ -51,16 +51,21 @@
                             <constraint firstItem="PeI-5l-L8J" firstAttribute="leading" secondItem="OXl-5w-HRU" secondAttribute="leading" id="doy-uO-fGs"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Новости" id="Y9W-JC-qIw"/>
+                    <navigationItem key="navigationItem" title="News" id="Y9W-JC-qIw"/>
                     <connections>
                         <outlet property="tableView" destination="PeI-5l-L8J" id="I94-fU-HSC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dSy-7d-Iru" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <customObject id="LS8-kF-3iM" customClass="NewsTableViewControllerAssembly" customModule="covid_19" customModuleProvider="target">
+                    <connections>
+                        <outlet property="viewController" destination="SZF-4g-Vqh" id="EFQ-SS-f3s"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="1976.8115942028987" y="527.67857142857144"/>
         </scene>
-        <!--Статистика-->
+        <!--Statistics-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MainTableViewController" customModule="covid_19" customModuleProvider="target" sceneMemberID="viewController">
@@ -82,13 +87,18 @@
                             <constraint firstItem="QR3-Gl-HTb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="vLW-iS-bcI"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Статистика" largeTitleDisplayMode="always" id="YGs-uM-feP"/>
+                    <navigationItem key="navigationItem" title="Statistics" largeTitleDisplayMode="always" id="YGs-uM-feP"/>
                     <connections>
                         <outlet property="tableView" destination="QR3-Gl-HTb" id="76E-OS-XhF"/>
                         <segue destination="tfX-DG-gkf" kind="show" identifier="selectingSegue" id="Ilt-rZ-9eS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <customObject id="Qnn-M4-pOq" customClass="MainTableViewControllerAssembly" customModule="covid_19" customModuleProvider="target">
+                    <connections>
+                        <outlet property="viewController" destination="BYZ-38-t0r" id="9et-fw-AFt"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="1976.8115942028987" y="-170.08928571428569"/>
         </scene>
@@ -126,14 +136,19 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s3n-wC-FMs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <customObject id="iSt-tH-oRc" customClass="SelectingTableViewControllerAssembly" customModule="covid_19" customModuleProvider="target">
+                    <connections>
+                        <outlet property="viewController" destination="tfX-DG-gkf" id="QaJ-es-YpL"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="3021.739130434783" y="-170.08928571428569"/>
         </scene>
-        <!--Статистика-->
+        <!--Statistics-->
         <scene sceneID="Pei-Bg-jgt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="U4a-JI-Bir" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Статистика" id="Frp-he-DLi"/>
+                    <tabBarItem key="tabBarItem" title="Statistics" id="Frp-he-DLi"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="k04-4H-dNy">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -148,11 +163,11 @@
             </objects>
             <point key="canvasLocation" x="1066.6666666666667" y="-170.08928571428569"/>
         </scene>
-        <!--Новости-->
+        <!--News-->
         <scene sceneID="aMa-vd-3mk">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Fxv-cf-doE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Новости" id="aXK-ej-atv"/>
+                    <tabBarItem key="tabBarItem" title="News" id="aXK-ej-atv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="sfz-0s-WnG">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>

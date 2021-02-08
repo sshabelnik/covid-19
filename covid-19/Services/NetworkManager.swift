@@ -12,4 +12,5 @@ protocol NetworkManager: AnyObject{
     func getListOfCountries(completion: @escaping (Result<[CountryModelObject], Error>) -> Void)
     func getDataCountry(country: String, completion: @escaping (Result<CountryDataModelObject, Error>) -> Void)
     func getWorldData(completion: @escaping (Result<WorldDataModelObject, Error>) -> Void)
+    func getNews(completion: @escaping (Result<NewsModel, Error>) -> Void)
 }
