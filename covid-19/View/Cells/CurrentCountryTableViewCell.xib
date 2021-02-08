@@ -21,8 +21,8 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WS3-X2-4T4">
                         <rect key="frame" x="0.0" y="0.0" width="293" height="44"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="879-3P-a8d">
-                                <rect key="frame" x="36" y="12" width="250" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Russia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="879-3P-a8d">
+                                <rect key="frame" x="45" y="10" width="250" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="B7X-nB-R0L"/>
                                 </constraints>
@@ -30,8 +30,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hx-pT-ULK">
-                                <rect key="frame" x="8" y="12" width="25" height="25"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🇷🇺" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hx-pT-ULK">
+                                <rect key="frame" x="15" y="10" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="5Y0-ap-P99"/>
                                     <constraint firstAttribute="height" constant="25" id="8nY-8Z-lNN"/>
@@ -43,10 +43,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="7hx-pT-ULK" firstAttribute="top" secondItem="WS3-X2-4T4" secondAttribute="top" constant="12" id="Iva-PC-GMw"/>
-                            <constraint firstItem="879-3P-a8d" firstAttribute="top" secondItem="WS3-X2-4T4" secondAttribute="top" constant="12" id="QIJ-r9-iUp"/>
-                            <constraint firstItem="7hx-pT-ULK" firstAttribute="leading" secondItem="WS3-X2-4T4" secondAttribute="leading" constant="8" id="Qpd-Cw-9bu"/>
-                            <constraint firstItem="879-3P-a8d" firstAttribute="leading" secondItem="WS3-X2-4T4" secondAttribute="leading" constant="36" id="j1h-bG-YuZ"/>
+                            <constraint firstItem="7hx-pT-ULK" firstAttribute="top" secondItem="WS3-X2-4T4" secondAttribute="top" constant="10" id="Iva-PC-GMw"/>
+                            <constraint firstItem="879-3P-a8d" firstAttribute="top" secondItem="WS3-X2-4T4" secondAttribute="top" constant="10" id="QIJ-r9-iUp"/>
+                            <constraint firstItem="7hx-pT-ULK" firstAttribute="leading" secondItem="WS3-X2-4T4" secondAttribute="leading" constant="15" id="Qpd-Cw-9bu"/>
+                            <constraint firstItem="879-3P-a8d" firstAttribute="leading" secondItem="WS3-X2-4T4" secondAttribute="leading" constant="45" id="j1h-bG-YuZ"/>
                         </constraints>
                     </view>
                 </subviews>

@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import SDWebImage
 
 class NewsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var topicLabel: UILabel!
+    @IBOutlet weak var newImageView: UIImageView!
+    @IBOutlet weak var titleTextLabel: UILabel!
+    @IBOutlet weak var descriptionTextLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,6 +27,11 @@ class NewsTableViewCell: UITableViewCell {
     }
     
     func setup(for new: News){
-        self.topicLabel.text = new.title
+        self.titleTextLabel.text = new.title
+        self.descriptionTextLabel.text = new.excerpt
+        guard let imageString = new.images?.first?.url else { return }
+        let imageURL = URL(string: imageString)
+        self.newImageView.sd_setImage(with: imageURL, completed: nil)
+        self.newImageView.layer.cornerRadius = 25
     }
 }

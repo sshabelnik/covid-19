@@ -8,5 +8,6 @@ target 'covid-19' do
   # Pods for covid-19
 	pod 'Alamofire', '~> 5.2'
 	pod 'Charts'
+	pod 'SDWebImage', '~> 5.0'
 
 end
