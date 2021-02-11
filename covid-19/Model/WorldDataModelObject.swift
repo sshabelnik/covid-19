@@ -10,6 +10,7 @@ import Foundation
 
 struct WorldDataModelObject {
     
+    //let updatedDateTime: String
     let totalConfirmedCases: Int
     let newlyConfirmedCases: Int
     let totalDeaths: Int

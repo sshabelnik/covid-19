@@ -13,8 +13,8 @@ class Endpoints{
     static func allCountriesURL() -> URLRequest{
         
         let headers = [
-            "x-rapidapi-host": "covid-19-data.p.rapidapi.com",
-            "x-rapidapi-key": "84d4f068eamshae63f22a1e6b83ap1c09a2jsn11cffe38c5ef"
+            "x-rapidapi-host": Constants.COVID_HOST,
+            "x-rapidapi-key": Constants.API_KEY
         ]
         
         let url = URL(string: "https://covid-19-data.p.rapidapi.com/help/countries?format=json")
@@ -29,8 +29,8 @@ class Endpoints{
     static func countryDataURL(countryCode: String) -> URLRequest{
         
         let headers = [
-            "x-rapidapi-key": "84d4f068eamshae63f22a1e6b83ap1c09a2jsn11cffe38c5ef",
-            "x-rapidapi-host": "coronavirus-smartable.p.rapidapi.com"
+            "x-rapidapi-key": Constants.API_KEY,
+            "x-rapidapi-host": Constants.SMARTABLE_HOST
         ]
         
         let url = URL(string: "https://coronavirus-smartable.p.rapidapi.com/stats/v1/\(countryCode)/")
@@ -45,8 +45,8 @@ class Endpoints{
     static func worldDataURL() -> URLRequest{
            
         let headers = [
-            "x-rapidapi-key": "84d4f068eamshae63f22a1e6b83ap1c09a2jsn11cffe38c5ef",
-            "x-rapidapi-host": "coronavirus-smartable.p.rapidapi.com"
+            "x-rapidapi-key": Constants.API_KEY,
+            "x-rapidapi-host": Constants.SMARTABLE_HOST
         ]
            
            let url = URL(string: "https://coronavirus-smartable.p.rapidapi.com/stats/v1/global/")
@@ -60,8 +60,8 @@ class Endpoints{
     
     static func newsURL() -> URLRequest{
         let headers = [
-            "x-rapidapi-key": "84d4f068eamshae63f22a1e6b83ap1c09a2jsn11cffe38c5ef",
-            "x-rapidapi-host": "coronavirus-smartable.p.rapidapi.com"
+            "x-rapidapi-key": Constants.API_KEY,
+            "x-rapidapi-host": Constants.SMARTABLE_HOST
         ]
         
         let url = URL(string: "https://coronavirus-smartable.p.rapidapi.com/news/v1/RU/")

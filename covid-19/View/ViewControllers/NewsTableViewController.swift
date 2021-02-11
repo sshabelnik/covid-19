@@ -40,19 +40,31 @@ extension NewsTableViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell") as! NewsTableViewCell
         guard let news = news else { return UITableViewCell() }
-        cell.setup(for: news[indexPath.row])
+        DispatchQueue.main.async {
+            cell.setup(for: news[indexPath.row])
+        }
+        cell.selectionStyle = .gray
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let urlString = news?[indexPath.row].webUrl else { return }
+        guard let url = URL(string: urlString) else { return }
+        UIApplication.shared.open(url)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 // MARK: - ViewInput
 extension NewsTableViewController: NewsViewInput {
     func importNews(news: [News]) {
-        self.news = news
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.news = news
+            self.tableView.reloadData()
+        }
     }
 }

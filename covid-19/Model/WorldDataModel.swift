@@ -11,6 +11,10 @@ import Foundation
 struct WorldDataStats: Codable {
     let updatedDateTime: String
     let stats: WorldDataModel
+    
+    func createObject() -> WorldDataModelObject{
+        return WorldDataModelObject(totalConfirmedCases: stats.totalConfirmedCases, newlyConfirmedCases: stats.newlyConfirmedCases, totalDeaths: stats.totalDeaths, newDeaths: stats.newDeaths, totalRecoveredCases: stats.totalRecoveredCases, newlyRecoveredCases: stats.newlyRecoveredCases, totalSickCases: stats.totalConfirmedCases - stats.totalDeaths - stats.totalRecoveredCases)
+    }
 }
 
 struct WorldDataModel: Codable{
@@ -21,8 +25,4 @@ struct WorldDataModel: Codable{
     let newDeaths: Int
     let totalRecoveredCases: Int
     let newlyRecoveredCases: Int
-    
-    func createObject() -> WorldDataModelObject{
-        return WorldDataModelObject(totalConfirmedCases: totalConfirmedCases, newlyConfirmedCases: newlyConfirmedCases, totalDeaths: totalDeaths, newDeaths: newDeaths, totalRecoveredCases: totalRecoveredCases, newlyRecoveredCases: newlyRecoveredCases, totalSickCases: totalConfirmedCases - totalDeaths - totalRecoveredCases)
-    }
 }

@@ -14,4 +14,5 @@ protocol MainViewOutput: AnyObject {
     func setSelectedCountry(country: CountryDataModelObject)
     func prepareSegue(for segue: UIStoryboardSegue)
     func getAndSaveWorldData()
+    func getAndSaveCountryData()
 }

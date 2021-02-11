@@ -62,7 +62,7 @@ class NetworkManagerImplementation: NetworkManager{
             
             guard let value = response.value else {return}
             
-            let worldData = value.stats.createObject()
+            let worldData = value.createObject()
             
             DispatchQueue.main.async {
                 completion(.success(worldData))

@@ -14,7 +14,6 @@ struct CountryModel: Codable{
     let alpha2code: String?
     
     func createObject() -> CountryModelObject{
-        
         return CountryModelObject(name: name, alpha2code: alpha2code ?? "kz")
     }
     

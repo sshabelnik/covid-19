@@ -80,24 +80,18 @@ class LocalDataManagerImplementation {
 
         do {
             let result = try managedContext.fetch(fetchRequest)
-            if result.first == nil {
-                completionHandler(.success(CountryDataModelObject(country: "Russia", code: "RU", totalConfirmedCases: 3934606, newlyConfirmedCases: 16688, totalDeaths: 75732, newDeaths: 527, totalRecoveredCases: 3413495, newlyRecoveredCases: 23582, totalSickCases: 445379)))
-            }
-            else {
-                let data = result.first as! NSManagedObject
-                let country = data.value(forKey: "country") as! String
-                let code = data.value(forKey: "code") as! String
-                let totalConfirmedCases = data.value(forKey: "totalConfirmedCases") as! Int
-                let newlyConfirmedCases = data.value(forKey: "newlyConfirmedCases") as! Int
-                let totalDeaths = data.value(forKey: "totalDeaths") as! Int
-                let newDeaths = data.value(forKey: "newDeaths") as! Int
-                let totalRecoveredCases = data.value(forKey: "totalRecoveredCases") as! Int
-                let newlyRecoveredCases = data.value(forKey: "newlyRecoveredCases") as! Int
-                let totalSickCases = data.value(forKey: "totalSickCases") as! Int
-                let currentCountry = CountryDataModelObject(country: country, code: code, totalConfirmedCases: totalConfirmedCases, newlyConfirmedCases: newlyConfirmedCases, totalDeaths: totalDeaths, newDeaths: newDeaths, totalRecoveredCases: totalRecoveredCases, newlyRecoveredCases: newlyRecoveredCases, totalSickCases: totalSickCases)
-                completionHandler(.success(currentCountry))
-            }
-
+            let data = result.first as! NSManagedObject
+            let country = data.value(forKey: "country") as! String
+            let code = data.value(forKey: "code") as! String
+            let totalConfirmedCases = data.value(forKey: "totalConfirmedCases") as! Int
+            let newlyConfirmedCases = data.value(forKey: "newlyConfirmedCases") as! Int
+            let totalDeaths = data.value(forKey: "totalDeaths") as! Int
+            let newDeaths = data.value(forKey: "newDeaths") as! Int
+            let totalRecoveredCases = data.value(forKey: "totalRecoveredCases") as! Int
+            let newlyRecoveredCases = data.value(forKey: "newlyRecoveredCases") as! Int
+            let totalSickCases = data.value(forKey: "totalSickCases") as! Int
+            let currentCountry = CountryDataModelObject(country: country, code: code, totalConfirmedCases: totalConfirmedCases, newlyConfirmedCases: newlyConfirmedCases, totalDeaths: totalDeaths, newDeaths: newDeaths, totalRecoveredCases: totalRecoveredCases, newlyRecoveredCases: newlyRecoveredCases, totalSickCases: totalSickCases)
+            completionHandler(.success(currentCountry))
         } catch let error {
             print("Failed")
             completionHandler(.failure(error))

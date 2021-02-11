@@ -148,7 +148,7 @@
         <scene sceneID="Pei-Bg-jgt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="U4a-JI-Bir" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Statistics" id="Frp-he-DLi"/>
+                    <tabBarItem key="tabBarItem" title="Statistics" image="chart.pie.fill" catalog="system" id="Frp-he-DLi"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="k04-4H-dNy">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -167,7 +167,7 @@
         <scene sceneID="aMa-vd-3mk">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Fxv-cf-doE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="News" id="aXK-ej-atv"/>
+                    <tabBarItem key="tabBarItem" title="News" image="info.circle.fill" catalog="system" id="aXK-ej-atv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="sfz-0s-WnG">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -187,6 +187,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chart.pie.fill" catalog="system" width="128" height="121"/>
+        <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -8,6 +8,17 @@
 
 import Foundation
 
+struct CountryDataStats: Codable {
+    let location: CountryDataName
+    let updatedDateTime: String
+    let stats: CountryDataModel
+    
+    func createObject() -> CountryDataModelObject{
+        
+        return CountryDataModelObject(country: location.countryOrRegion, code: location.isoCode, totalConfirmedCases: stats.totalConfirmedCases, newlyConfirmedCases: stats.newlyConfirmedCases, totalDeaths: stats.totalDeaths, newDeaths: stats.newDeaths, totalRecoveredCases: stats.totalRecoveredCases, newlyRecoveredCases: stats.newlyRecoveredCases, totalSickCases: stats.totalConfirmedCases - stats.totalDeaths - stats.totalRecoveredCases)
+    }
+}
+
 struct CountryDataName: Codable {
     let countryOrRegion: String
     let isoCode: String
@@ -21,17 +32,6 @@ struct CountryDataModel: Codable{
     let newDeaths: Int
     let totalRecoveredCases: Int
     let newlyRecoveredCases: Int
-}
-
-struct CountryDataStats: Codable {
-    let location: CountryDataName
-    let updatedDateTime: String
-    let stats: CountryDataModel
-    
-    func createObject() -> CountryDataModelObject{
-        
-        return CountryDataModelObject(country: location.countryOrRegion, code: location.isoCode, totalConfirmedCases: stats.totalConfirmedCases, newlyConfirmedCases: stats.newlyConfirmedCases, totalDeaths: stats.totalDeaths, newDeaths: stats.newDeaths, totalRecoveredCases: stats.totalRecoveredCases, newlyRecoveredCases: stats.newlyRecoveredCases, totalSickCases: stats.totalConfirmedCases - stats.totalDeaths - stats.totalRecoveredCases)
-    }
 }
 
 

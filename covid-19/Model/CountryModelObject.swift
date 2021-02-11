@@ -16,7 +16,5 @@ struct CountryModelObject{
     init(name: String, alpha2code: String){
         self.name = name
         self.alpha2code = alpha2code
-        
     }
-    
 }

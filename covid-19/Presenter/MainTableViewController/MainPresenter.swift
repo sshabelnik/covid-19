@@ -9,42 +9,37 @@
 import Foundation
 import UIKit
 
-class MainPresenter: MainViewOutput, MainTableViewControllerDelegate {
+class MainPresenter: MainViewOutput {
     
     var networkManager: NetworkManager!
     weak var view: MainViewInput!
+    var appDelegate: AppDelegate!
     
     func getData() {
-        LocalDataManagerImplementation.shared.getCountryData { (result) in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let data):
-                self.view.setCurrentCountry(country: data)
+        if (appDelegate.hasAlreadyLaunched) {
+            LocalDataManagerImplementation.shared.getCountryData { (result) in
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let data):
+                    self.view.setCurrentCountry(country: data)
+                }
+            }
+            
+            LocalDataManagerImplementation.shared.getWorldData { (result) in
+                switch result {
+                case.failure(let error):
+                    print(error)
+                case .success(let data):
+                    self.view.setWorldData(data: data)
+                }
             }
         }
-//
-//        LocalDataManagerImplementation.shared.getWorldData { (result) in
-//            switch result {
-//            case.failure(let error):
-//                print(error)
-//                self.networkManager.getWorldData { (result) in
-//                    switch result{
-//                    case.failure(let error):
-//                        print("Getting WorldData error: \(error)")
-//                    case.success(let data):
-//                        self.worldData = data
-//                        LocalDataManagerImplementation.shared.saveWorldData(data: data)
-//                    }
-//                }
-//            case .success(let data):
-//                self.worldData = data
-//            }
-//        }
-    }
-    
-    func setSelectedCountry(country: CountryDataModelObject) {
-        view.setCurrentCountry(country: country)
+        else {
+            self.getAndSaveWorldData()
+            self.getAndSaveCountryData()
+        }
+
     }
     
     func prepareSegue(for segue: UIStoryboardSegue) {
@@ -62,5 +57,23 @@ class MainPresenter: MainViewOutput, MainTableViewControllerDelegate {
                 self.view.setWorldData(data: data)
             }
         }
+    }
+    
+    func getAndSaveCountryData() {
+        self.networkManager.getDataCountry(country: "RU") { (result) in
+            switch result {
+            case .failure(let error):
+                print("Getting countryData error: \(error)")
+            case .success(let data):
+                LocalDataManagerImplementation.shared.saveCountryData(country: data)
+                self.view.setCurrentCountry(country: data)
+            }
+        }
+    }
+}
+
+extension MainPresenter: MainTableViewControllerDelegate {
+    func setSelectedCountry(country: CountryDataModelObject) {
+        view.setCurrentCountry(country: country)
     }
 }

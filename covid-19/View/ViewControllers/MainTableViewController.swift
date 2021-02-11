@@ -8,24 +8,38 @@ protocol MainTableViewControllerDelegate: AnyObject{
 class MainTableViewController: UIViewController {
     
     var presenter: MainViewOutput!
+    var refreshControl: UIRefreshControl!
     
     var worldData: WorldDataModelObject?
     var selectedCountry: CountryDataModelObject?
 
     @IBOutlet weak var tableView: UITableView!
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        presenter.getData()
-        presenter.getAndSaveWorldData()
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         
+        configureRefreshControl()
+        
         registerNibs()
+        
+        presenter.getData()
+    }
+    
+    func configureRefreshControl() {
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshWeatherData(_:)), for: .valueChanged)
+    }
+    
+    @objc private func refreshWeatherData(_ sender: Any) {
+        fetchData()
+    }
+    
+    func fetchData() {
+        self.presenter.getAndSaveCountryData()
+        self.presenter.getAndSaveWorldData()
+        self.refreshControl.endRefreshing()
     }
     
     func registerNibs(){
@@ -92,8 +106,6 @@ extension MainTableViewController: UITableViewDelegate, UITableViewDataSource{
         default:
             return UITableViewCell()
         }
-        
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -101,7 +113,7 @@ extension MainTableViewController: UITableViewDelegate, UITableViewDataSource{
         case 0:
             return 50
         case 1:
-            return 250
+            return 225
         case 2:
             return 350
         default:
