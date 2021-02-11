@@ -10,6 +10,7 @@
         <attribute name="totalDeaths" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="totalRecoveredCases" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="totalSickCases" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="updatedDateTime" optional="YES" attributeType="String"/>
     </entity>
     <entity name="WorldData" representedClassName="WorldData" syncable="YES" codeGenerationType="class">
         <attribute name="newDeaths" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
@@ -19,10 +20,9 @@
         <attribute name="totalDeaths" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="totalRecoveredCases" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="totalSickCases" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="updatedDateTime" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="CountryData" positionX="-54" positionY="-9" width="128" height="14"/>
-        <element name="WorldData" positionX="-45" positionY="54" width="128" height="149"/>
+        <element name="CountryData" positionX="-54" positionY="-9" width="128" height="179"/>
+        <element name="WorldData" positionX="-45" positionY="54" width="128" height="134"/>
     </elements>
 </model>

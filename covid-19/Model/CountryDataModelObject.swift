@@ -12,6 +12,7 @@ struct CountryDataModelObject{
     
     let country: String
     let code: String
+    let updatedDateTime: String
     let totalConfirmedCases: Int
     let newlyConfirmedCases: Int
     let totalDeaths: Int

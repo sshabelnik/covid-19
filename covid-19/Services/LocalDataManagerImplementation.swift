@@ -27,6 +27,7 @@ class LocalDataManagerImplementation {
         let currentCountry = NSManagedObject(entity: userEntity, insertInto: managedContext)
         currentCountry.setValue(country.country, forKey: "country")
         currentCountry.setValue(country.code, forKey: "code")
+        currentCountry.setValue(country.updatedDateTime, forKey: "updatedDateTime")
         currentCountry.setValue(country.totalConfirmedCases, forKey: "totalConfirmedCases")
         currentCountry.setValue(country.newlyConfirmedCases, forKey: "newlyConfirmedCases")
         currentCountry.setValue(country.totalDeaths, forKey: "totalDeaths")
@@ -83,6 +84,7 @@ class LocalDataManagerImplementation {
             let data = result.first as! NSManagedObject
             let country = data.value(forKey: "country") as! String
             let code = data.value(forKey: "code") as! String
+            let updatedDateTime = data.value(forKey: "updatedDateTime") as! String
             let totalConfirmedCases = data.value(forKey: "totalConfirmedCases") as! Int
             let newlyConfirmedCases = data.value(forKey: "newlyConfirmedCases") as! Int
             let totalDeaths = data.value(forKey: "totalDeaths") as! Int
@@ -90,7 +92,7 @@ class LocalDataManagerImplementation {
             let totalRecoveredCases = data.value(forKey: "totalRecoveredCases") as! Int
             let newlyRecoveredCases = data.value(forKey: "newlyRecoveredCases") as! Int
             let totalSickCases = data.value(forKey: "totalSickCases") as! Int
-            let currentCountry = CountryDataModelObject(country: country, code: code, totalConfirmedCases: totalConfirmedCases, newlyConfirmedCases: newlyConfirmedCases, totalDeaths: totalDeaths, newDeaths: newDeaths, totalRecoveredCases: totalRecoveredCases, newlyRecoveredCases: newlyRecoveredCases, totalSickCases: totalSickCases)
+            let currentCountry = CountryDataModelObject(country: country, code: code, updatedDateTime: updatedDateTime, totalConfirmedCases: totalConfirmedCases, newlyConfirmedCases: newlyConfirmedCases, totalDeaths: totalDeaths, newDeaths: newDeaths, totalRecoveredCases: totalRecoveredCases, newlyRecoveredCases: newlyRecoveredCases, totalSickCases: totalSickCases)
             completionHandler(.success(currentCountry))
         } catch let error {
             print("Failed")

@@ -17,6 +17,7 @@ class CountryTableViewCell: UITableViewCell {
     @IBOutlet weak var recoveredCovidLabel: UILabel!
     @IBOutlet weak var sickCovidLabel: UILabel!
     @IBOutlet weak var deathsCovidLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     func setupCell(for country: CountryDataModelObject){
         self.newConfirmedCovidLabel.text = "+" + String(country.newlyConfirmedCases.formattedWithSeparator)
@@ -24,7 +25,18 @@ class CountryTableViewCell: UITableViewCell {
         self.recoveredCovidLabel.text = String(country.totalRecoveredCases.formattedWithSeparator)
         self.sickCovidLabel.text = String(country.totalSickCases.formattedWithSeparator)
         self.deathsCovidLabel.text = String(country.totalDeaths.formattedWithSeparator)
+        self.dateLabel.text = "new cases for " + formatDate(date: country.updatedDateTime)
         drawLine(for: country)
+        
+    }
+    
+    func formatDate(date: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        let dateFromString = dateFormatter.date(from: date)
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        let formattedDate = dateFormatter.string(from: dateFromString!)
+        return formattedDate
     }
     
     func drawLine(for country: CountryDataModelObject){
