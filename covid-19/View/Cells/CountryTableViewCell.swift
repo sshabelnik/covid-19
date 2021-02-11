@@ -27,7 +27,6 @@ class CountryTableViewCell: UITableViewCell {
         self.deathsCovidLabel.text = String(country.totalDeaths.formattedWithSeparator)
         self.dateLabel.text = "new cases for " + formatDate(date: country.updatedDateTime)
         drawLine(for: country)
-        
     }
     
     func formatDate(date: String) -> String {
@@ -42,11 +41,7 @@ class CountryTableViewCell: UITableViewCell {
     func drawLine(for country: CountryDataModelObject){
         let lineView = LineView(frame: CGRect(x: 15, y: 150, width: mainView.bounds.size.width - 30, height: 20))
 
-        lineView.colors = [
-            UIColor.green, // green
-            UIColor.orange, // orange
-            UIColor.red // red
-        ]
+        lineView.colors = [UIColor(named: "green"), UIColor(named: "orange"), UIColor(named: "red")]
         let deathsPercent = CGFloat(Double(country.totalDeaths) / Double(country.totalConfirmedCases))
         let sickPercent = CGFloat(Double(country.totalSickCases) / Double(country.totalConfirmedCases))
         let recoveredPercent = CGFloat(Double(country.totalRecoveredCases) / Double(country.totalConfirmedCases))
@@ -54,5 +49,4 @@ class CountryTableViewCell: UITableViewCell {
 
         mainView.addSubview(lineView);
     }
-    
 }

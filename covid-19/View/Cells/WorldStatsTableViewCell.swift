@@ -7,6 +7,7 @@ class WorldStatsTableViewCell: UITableViewCell {
     @IBOutlet weak var mainView: UIView!
     
     @IBOutlet weak var confirmedCovidLabel: UILabel!
+    @IBOutlet weak var newlyConfirmedCases: UILabel!
     @IBOutlet weak var sickCovidLabel: UILabel!
     @IBOutlet weak var recoveredCovidLabel: UILabel!
     @IBOutlet weak var deathsCovidLabel: UILabel!
@@ -19,20 +20,9 @@ class WorldStatsTableViewCell: UITableViewCell {
     
     var numberOfDownloadsDataEntries = [PieChartDataEntry]()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-//        self.mainView.layer.shadowColor = UIColor.black.cgColor
-//        self.mainView.layer.shadowOpacity = 0.5
-//        self.mainView.layer.shadowOffset = .zero
-//        self.mainView.layer.shadowRadius = 3.0
-//        
-//        self.mainView.layer.cornerRadius = 10.0
-        
-    }
-    
     func setupCell(world: WorldDataModelObject){
         self.confirmedCovidLabel.text = String(world.totalConfirmedCases.formattedWithSeparator)
+        self.newlyConfirmedCases.text = "+" + String(world.newlyConfirmedCases.formattedWithSeparator)
         self.sickCovidLabel.text = String((world.totalSickCases).formattedWithSeparator)
         self.recoveredCovidLabel.text = String(world.totalRecoveredCases.formattedWithSeparator)
         self.deathsCovidLabel.text = String(world.totalDeaths.formattedWithSeparator)
@@ -59,10 +49,9 @@ class WorldStatsTableViewCell: UITableViewCell {
         chartDataSet.drawValuesEnabled = false
         let chartData = PieChartData(dataSet: chartDataSet)
         
-        let colors = [UIColor.orange,  UIColor.green, UIColor.red]
-        chartDataSet.colors = colors
+        let colors = [UIColor(named: "orange"), UIColor(named: "green"), UIColor(named: "red")]
+        chartDataSet.colors = colors as! [NSUIColor]
 
         pieChartView.data = chartData
-        
     }
 }

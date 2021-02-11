@@ -24,15 +24,15 @@ class SelectingViewController: UIViewController{
         super.viewDidLoad()
         
         searchBar.delegate = self
+        searchBar.placeholder = "Search by country"
 
         tableView.delegate = self
         tableView.dataSource = self
         
         self.tableView.tableHeaderView = searchBar
         
-        DispatchQueue.main.async {
-            self.presenter.getCountrys()
-        }
+
+        self.presenter.getCountrys()
     }
 }
 

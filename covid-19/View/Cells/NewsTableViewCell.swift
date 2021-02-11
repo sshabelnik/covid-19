@@ -11,19 +11,20 @@ import SDWebImage
 
 class NewsTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var newImageView: UIImageView!
     @IBOutlet weak var titleTextLabel: UILabel!
     @IBOutlet weak var descriptionTextLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        self.mainView.layer.shadowColor = UIColor.black.cgColor
+        self.mainView.layer.shadowOpacity = 0.5
+        self.mainView.layer.shadowOffset = .zero
+        self.mainView.layer.shadowRadius = 3.0
+        self.mainView.layer.cornerRadius = 20.0
+        self.newImageView.layer.cornerRadius = 20.0
+        self.newImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
     
     func setup(for new: News){
@@ -31,7 +32,8 @@ class NewsTableViewCell: UITableViewCell {
         self.descriptionTextLabel.text = new.excerpt
         guard let imageString = new.images?.first?.url else { return }
         let imageURL = URL(string: imageString)
-        self.newImageView.sd_setImage(with: imageURL, completed: nil)
-        self.newImageView.layer.cornerRadius = 25
+        DispatchQueue.main.async {
+            self.newImageView.sd_setImage(with: imageURL, completed: nil)
+        }
     }
 }
