@@ -20,7 +20,6 @@ class MainTableViewControllerAssembly: NSObject {
         
         let presenter = MainPresenter()
         let networkManager = NetworkManagerImplementation()
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let refreshControl = UIRefreshControl()
         
         view.presenter = presenter
@@ -28,7 +27,5 @@ class MainTableViewControllerAssembly: NSObject {
         
         presenter.networkManager = networkManager
         presenter.view = view
-        presenter.appDelegate = appDelegate
-        
     }
 }

@@ -13,10 +13,10 @@ class MainPresenter: MainViewOutput {
     
     var networkManager: NetworkManager!
     weak var view: MainViewInput!
-    var appDelegate: AppDelegate!
+    var userDefaultsManager = UserDefaultsManager()
     
     func getData() {
-        if (appDelegate.hasAlreadyLaunched) {
+        if (userDefaultsManager.isFirstLaunch()) {
             LocalDataManagerImplementation.shared.getCountryData { (result) in
                 switch result {
                 case .failure(let error):
@@ -38,6 +38,7 @@ class MainPresenter: MainViewOutput {
         else {
             self.getAndSaveWorldData()
             self.getAndSaveCountryData()
+            self.userDefaultsManager.hasAlreadyLaunched()
         }
 
     }
