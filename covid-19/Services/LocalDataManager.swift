@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 import CoreData
 
-class LocalDataManagerImplementation {
+class LocalDataManager {
 
-    public static let shared = LocalDataManagerImplementation()
+    public static let shared = LocalDataManager()
 
     func saveCountryData(country: CountryDataModelObject) {
         clearEntity(entityName: "CountryData")
@@ -95,7 +95,7 @@ class LocalDataManagerImplementation {
             let currentCountry = CountryDataModelObject(country: country, code: code, updatedDateTime: updatedDateTime, totalConfirmedCases: totalConfirmedCases, newlyConfirmedCases: newlyConfirmedCases, totalDeaths: totalDeaths, newDeaths: newDeaths, totalRecoveredCases: totalRecoveredCases, newlyRecoveredCases: newlyRecoveredCases, totalSickCases: totalSickCases)
             completionHandler(.success(currentCountry))
         } catch let error {
-            print("Failed")
+            print("Failed get country data: \(error)")
             completionHandler(.failure(error))
         }
 
@@ -125,7 +125,7 @@ class LocalDataManagerImplementation {
 
 
         } catch let error {
-            print("Failed")
+            print("Failed get world data: \(error)")
             completionHandler(.failure(error))
         }
     }
@@ -147,8 +147,8 @@ class LocalDataManagerImplementation {
             }
             try managedContext.save()
 
-        } catch {
-
+        } catch let error {
+            print("Couldn't clear entity: \(error)")
         }
     }
 

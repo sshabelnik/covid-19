@@ -37,7 +37,7 @@ class MainTableViewController: UIViewController {
     }
     
     func fetchData() {
-        self.presenter.getAndSaveCountryData()
+        self.presenter.getAndSaveCountryData(country: selectedCountry)
         self.presenter.getAndSaveWorldData()
         self.refreshControl.endRefreshing()
     }
@@ -92,9 +92,7 @@ extension MainTableViewController: UITableViewDelegate, UITableViewDataSource{
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "CountryTableViewCell") as! CountryTableViewCell
             guard let country = selectedCountry else { return UITableViewCell()}
-            DispatchQueue.main.async {
-                cell.setupCell(for: country)
-            }
+            cell.setupCell(for: country)
             cell.selectionStyle = .none
             return cell
         case 2:

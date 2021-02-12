@@ -15,7 +15,16 @@ struct CountryDataStats: Codable {
     
     func createObject() -> CountryDataModelObject{
         
-        return CountryDataModelObject(country: location.countryOrRegion, code: location.isoCode, updatedDateTime: updatedDateTime, totalConfirmedCases: stats.totalConfirmedCases, newlyConfirmedCases: stats.newlyConfirmedCases, totalDeaths: stats.totalDeaths, newDeaths: stats.newDeaths, totalRecoveredCases: stats.totalRecoveredCases, newlyRecoveredCases: stats.newlyRecoveredCases, totalSickCases: stats.totalConfirmedCases - stats.totalDeaths - stats.totalRecoveredCases)
+        return CountryDataModelObject(country: location.countryOrRegion,
+                                      code: location.isoCode,
+                                      updatedDateTime: updatedDateTime,
+                                      totalConfirmedCases: stats.totalConfirmedCases,
+                                      newlyConfirmedCases: stats.newlyConfirmedCases,
+                                      totalDeaths: stats.totalDeaths,
+                                      newDeaths: stats.newDeaths,
+                                      totalRecoveredCases: stats.totalRecoveredCases,
+                                      newlyRecoveredCases: stats.newlyRecoveredCases,
+                                      totalSickCases: stats.totalConfirmedCases - stats.totalDeaths - stats.totalRecoveredCases)
     }
 }
 

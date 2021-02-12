@@ -13,7 +13,13 @@ struct WorldDataStats: Codable {
     let stats: WorldDataModel
     
     func createObject() -> WorldDataModelObject{
-        return WorldDataModelObject(totalConfirmedCases: stats.totalConfirmedCases, newlyConfirmedCases: stats.newlyConfirmedCases, totalDeaths: stats.totalDeaths, newDeaths: stats.newDeaths, totalRecoveredCases: stats.totalRecoveredCases, newlyRecoveredCases: stats.newlyRecoveredCases, totalSickCases: stats.totalConfirmedCases - stats.totalDeaths - stats.totalRecoveredCases)
+        return WorldDataModelObject(totalConfirmedCases: stats.totalConfirmedCases,
+                                    newlyConfirmedCases: stats.newlyConfirmedCases,
+                                    totalDeaths: stats.totalDeaths,
+                                    newDeaths: stats.newDeaths,
+                                    totalRecoveredCases: stats.totalRecoveredCases,
+                                    newlyRecoveredCases: stats.newlyRecoveredCases,
+                                    totalSickCases: stats.totalConfirmedCases - stats.totalDeaths - stats.totalRecoveredCases)
     }
 }
 

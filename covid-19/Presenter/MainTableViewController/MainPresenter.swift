@@ -13,11 +13,11 @@ class MainPresenter: MainViewOutput {
     
     var networkManager: NetworkManager!
     weak var view: MainViewInput!
-    var userDefaultsManager = UserDefaultsManager()
+    var userDefaultsManager: UserDefaultsManager!
     
     func getData() {
         if (userDefaultsManager.isFirstLaunch()) {
-            LocalDataManagerImplementation.shared.getCountryData { (result) in
+            LocalDataManager.shared.getCountryData { (result) in
                 switch result {
                 case .failure(let error):
                     print(error)
@@ -26,7 +26,7 @@ class MainPresenter: MainViewOutput {
                 }
             }
             
-            LocalDataManagerImplementation.shared.getWorldData { (result) in
+            LocalDataManager.shared.getWorldData { (result) in
                 switch result {
                 case.failure(let error):
                     print(error)
@@ -37,7 +37,7 @@ class MainPresenter: MainViewOutput {
         }
         else {
             self.getAndSaveWorldData()
-            self.getAndSaveCountryData()
+            self.getAndSaveCountryData(country: nil)
             self.userDefaultsManager.hasAlreadyLaunched()
         }
 
@@ -54,19 +54,19 @@ class MainPresenter: MainViewOutput {
             case.failure(let error):
                 print("Getting WorldData error: \(error)")
             case.success(let data):
-                LocalDataManagerImplementation.shared.saveWorldData(data: data)
+                LocalDataManager.shared.saveWorldData(data: data)
                 self.view.setWorldData(data: data)
             }
         }
     }
     
-    func getAndSaveCountryData() {
-        self.networkManager.getDataCountry(country: "RU") { (result) in
+    func getAndSaveCountryData(country: CountryDataModelObject?) {
+        self.networkManager.getDataCountry(country: country?.code ?? "RU") { (result) in
             switch result {
             case .failure(let error):
                 print("Getting countryData error: \(error)")
             case .success(let data):
-                LocalDataManagerImplementation.shared.saveCountryData(country: data)
+                LocalDataManager.shared.saveCountryData(country: data)
                 self.view.setCurrentCountry(country: data)
             }
         }

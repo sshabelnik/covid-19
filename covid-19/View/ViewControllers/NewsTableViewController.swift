@@ -40,10 +40,8 @@ extension NewsTableViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell") as! NewsTableViewCell
         guard let news = news else { return UITableViewCell() }
-        DispatchQueue.main.async {
-            cell.setup(for: news[indexPath.row])
-        }
-        cell.selectionStyle = .gray
+        cell.setup(for: news[indexPath.row])
+        cell.selectionStyle = .none
         return cell
     }
     

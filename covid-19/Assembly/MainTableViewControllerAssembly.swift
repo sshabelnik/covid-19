@@ -21,11 +21,14 @@ class MainTableViewControllerAssembly: NSObject {
         let presenter = MainPresenter()
         let networkManager = NetworkManagerImplementation()
         let refreshControl = UIRefreshControl()
+        let userDefaultsManager = UserDefaultsManager()
         
         view.presenter = presenter
         view.refreshControl = refreshControl
         
+        
         presenter.networkManager = networkManager
         presenter.view = view
+        presenter.userDefaultsManager = userDefaultsManager
     }
 }

@@ -30,8 +30,7 @@ class SelectingViewController: UIViewController{
         tableView.dataSource = self
         
         self.tableView.tableHeaderView = searchBar
-        
-
+    
         self.presenter.getCountrys()
     }
 }

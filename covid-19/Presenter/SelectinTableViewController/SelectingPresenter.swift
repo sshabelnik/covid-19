@@ -41,7 +41,7 @@ class SelectingPresenter: SelectingViewOutput {
             case .success(let currentCountry):
                 DispatchQueue.main.async {
                     self.view.setCurrentCountry(country: currentCountry)
-                    LocalDataManagerImplementation.shared.saveCountryData(country: currentCountry)
+                    LocalDataManager.shared.saveCountryData(country: currentCountry)
                 }
             }
         }
